@@ -30,7 +30,6 @@ final int HP_MAX = 100*HP_PERCENT;
 int enemyFlyX;
 int enemyFlyY;
 int enemySpeed;
-int time;
 
 void setup () {
   size(640,480);
@@ -135,6 +134,7 @@ void draw() {
              treasureY = floor(random(50,420));
           }
         }   
+        
         /* HP -20 */    
         if(fighterX >= enemyFlyX -30 && fighterX <= enemyFlyX +30 &&
            fighterY >= enemyFlyY -50 && fighterY <= enemyFlyY +50){
@@ -151,23 +151,20 @@ void draw() {
       //ENEMY       
       image(enemyLeft,enemyFlyX,enemyFlyY);
       enemyFlyX += enemySpeed;
-      enemyFlyX %= width; 
+      enemyFlyX %= width;
       
-        /* Enemy up&down proximity */
-        time++;
-        if(time >= 60){
-            if(enemyFlyY >= fighterY){
-               enemyFlyY -= enemySpeed;
-            }
-            if(enemyFlyY < fighterY){
-               enemyFlyY += enemySpeed;
-            }
-          /* Enemy Rush in proximity */
-            if(fighterX - enemyFlyX <= 200){
-               enemyFlyX += enemySpeed;
-            }
-        }
-        
+      /* Enemy proximity*/
+      if(enemyFlyY >= fighterY){
+         enemyFlyY -= enemySpeed;
+      }
+      if(enemyFlyY < fighterY){
+         enemyFlyY += enemySpeed;
+      }
+      
+      /* Enemy rush*/
+      if(fighterX - enemyFlyX <= 200){
+         enemyFlyX += enemySpeed;
+      }         
     break;
       
     case GAME_LOSE:     
