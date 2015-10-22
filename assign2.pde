@@ -165,10 +165,6 @@ void draw() {
          enemyFlyY += enemySpeed;
       }
       
-      /* Enemy rush*/
-      if(fighterX - enemyFlyX <= 200){
-         enemyFlyX += enemySpeed;
-      }         
     break;
       
     case GAME_LOSE:     
