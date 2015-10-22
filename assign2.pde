@@ -27,9 +27,10 @@ int hpBar;
 final int HP_PERCENT = 2;
 final int HP_MAX = 100*HP_PERCENT;
 
-int enemyFlyX;
-int enemyFlyY;
-int enemySpeed;
+float enemyFlyX;
+float enemyFlyY;
+float enemySpeed;
+float enemyAddSpeed = 0.01;
 
 void setup () {
   size(640,480);
@@ -152,6 +153,9 @@ void draw() {
       image(enemyLeft,enemyFlyX,enemyFlyY);
       enemyFlyX += enemySpeed;
       enemyFlyX %= width;
+      
+      /*Enemy acceleration*/
+      enemyFlyX += enemyAddSpeed*enemyFlyX;
       
       /* Enemy proximity*/
       if(enemyFlyY >= fighterY){
